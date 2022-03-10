@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>
+    <a href="{% url 'program_add' %}" class="btn btn-primary">Προσθήκη προγράμματος</a>
+  </p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Τίτλος</th>
+        <th>Θεματική ενότητα</th>
+        <th>Τελ. Ενημέρωση</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for program in programs %}
+        <tr>
+          <td><a href="{% url 'program_edit' program.pk %}">{{ program.title }}</a></td>
+          <td>{{ program.theme }}</td>
+          <td>{{ program.timestamp }}</td>
+        </tr>
+      {% empty %}
+        <tr class="table-active">
+          <td colspan="3">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
